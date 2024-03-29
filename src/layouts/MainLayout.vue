@@ -11,7 +11,6 @@
         <!-- Navigation links -->
         <div class="row items-center no-wrap q-ml-md">
           <router-link to="/" class="text-white q-mr-sm GL__nav-link">Home</router-link>
-          <router-link to="/dormitories" class="text-white q-mr-sm GL__nav-link">Dormitories</router-link>
           <router-link to="/about" class="text-white q-mr-sm GL__nav-link">About</router-link>
         </div>
 

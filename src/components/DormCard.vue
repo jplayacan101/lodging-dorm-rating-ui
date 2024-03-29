@@ -1,5 +1,5 @@
 <template>
-    <q-card inline class="dorm-card q-ma-sm" :style="{ width: cardWidth }">
+    <q-card inline class="dorm-card q-mx-sm" :style="{ width: cardWidth }">
       <q-card-media>
         <img :src="dorm.Images[0]" style="width:300px; height:200px"/>
       </q-card-media>

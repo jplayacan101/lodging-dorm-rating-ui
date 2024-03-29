@@ -5,28 +5,51 @@
       <q-img src="~assets/sample_img.jpeg" alt="LDRS Banner" class="banner-image" />
     </div>
 
-    <div class="content q-mb-lg text-center">
-      <p class="text-body1 q-mb-md">
-        The LDRS aims to provide a service wherein the public may efficiently and systematically search for and review lodging and dormitory facilities within the Katipunan, Barangka, and Pansol areas via a user rating system.
-      </p>
-      <p class="text-body1 q-mb-md">
-        It is intended to allow users, especially those potentially interested in living spaces in these areas for their proximity to Ateneo de Manila University, easy access to a central database providing them with peer-reviewed information on the quality of available accommodations and housing—aiding them in their choice of lodging.
-      </p>
-      <p class="text-body1 q-mb-md">
-        The LDRS includes the creation of a database of accommodations within these locations, the implementation of searching, rating, reviewing, and filtering functionalities, the design of a user-friendly interface for browsing and submitting reviews, and the integration of administrative tools for managing user accounts and moderating content.
-      </p>
-    </div>
+    <q-page-container class="q-pa-md">
+      <dorm-list :dormitories="dormitories" />
+    </q-page-container>
   </q-page>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
+import axios from 'axios';
+import DormList from '../components/DormList.vue';
 
 export default defineComponent({
   name: 'HomePage',
+  components: {
+    DormList
+  },
+  data() {
+    return {
+      dormitories: []
+    };
+  },
+  async mounted() {
+    await this.fetchData();
+  },
   methods: {
-    exploreNow() {
-      // Add navigation logic if needed
+    async fetchData() {
+      try {
+        // Fetch dormitories
+        const dormitoriesResponse = await axios.get('http://localhost:3000/dormitories');
+        const dormitories = dormitoriesResponse.data;
+
+        // Fetch dormitory images
+        const dormitoryImagesResponse = await axios.get('http://localhost:3000/dormitory-images');
+        const dormitoryImages = dormitoryImagesResponse.data;
+
+        // Match dormitory images with dormitories based on DormID
+        const dormsWithImages = dormitories.map(dorm => {
+          const images = dormitoryImages.filter(image => image.DormID === dorm.DormID).map(image => image.ImageURL);
+          return { ...dorm, Images: images.length > 0 ? images : ['https://www.ateneo.edu/sites/default/files/inline-images/imagesmith-20190206-2-42-HDR.jpg'] };
+        });
+
+        this.dormitories = dormsWithImages;
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
     }
   }
 });
@@ -58,3 +81,5 @@ export default defineComponent({
   display: block;
 }
 </style>
+
+
