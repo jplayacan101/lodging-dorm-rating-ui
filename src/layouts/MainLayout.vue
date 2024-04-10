@@ -1,7 +1,7 @@
 <template>
   <q-layout class="bg-grey-1">
     <!-- Header content -->
-    <q-header elevated class="text-white bg-green-3" height-hint="61.59">
+    <q-header reveal elevated class="text-white bg-green-3" height-hint="61.59">
       <q-toolbar class="q-py-sm q-px-md">
         <!-- Logo or branding -->
         <q-avatar rounded size="40px">
@@ -38,20 +38,37 @@
                     <q-item-section>
                       <div>
                         <q-icon name="tag_faces" color="blue-9" size="18px" />
-                        Set your status
+                        Your profile
                       </div>
                     </q-item-section>
                   </q-item>
                   <q-separator />
-                  <q-item clickable class="GL__menu-link">
+                  <q-item clickable class="GL__menu-link-status">
+                    <!-- <q-item-section>
+                      <div>
+                        <q-icon name="home" color="blue-9" size="18px" />
+                        Add dorms
+                      </div>
+                    </q-item-section> -->
+                    <q-item-section>
+                      <router-link to="/adddorm" class="q-link">
+                        <div>
+                          <q-icon name="home" color="blue-9" size="18px" />
+                          Add dorms
+                        </div>
+                      </router-link>
+                    </q-item-section>
+                  </q-item>
+                  <q-separator />
+                  <!-- <q-item clickable class="GL__menu-link">
                     <q-item-section>Your profile</q-item-section>
-                  </q-item>
-                  <q-item clickable class="GL__menu-link">
+                  </q-item> -->
+                  <!-- <q-item clickable class="GL__menu-link">
                     <q-item-section>Your dorms</q-item-section>
-                  </q-item>
-                  <q-item clickable class="GL__menu-link">
+                  </q-item> -->
+                  <!-- <q-item clickable class="GL__menu-link">
                     <q-item-section>Settings</q-item-section>
-                  </q-item>
+                  </q-item> -->
                   <q-item clickable class="GL__menu-link" @click="signOut">
                     <q-item-section>Sign out</q-item-section>
                   </q-item>
@@ -65,7 +82,6 @@
         </div>
       </q-toolbar>
     </q-header>
-
     <!-- Main content -->
     <q-page-container>
       <router-view />
@@ -129,4 +145,6 @@ export default defineComponent({
 .GL__nav-link:hover {
   color: #ffd700; /* Change font color on hover */
 }
+
+
 </style>

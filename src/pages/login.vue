@@ -68,8 +68,10 @@ export default defineComponent({
         .then(response => {
           const accessToken = response.data.access_token;
           const username = response.data.user_name;
+          const userid = response.data.user_id;
           localStorage.setItem('accessToken', accessToken);
           localStorage.setItem('userName', username);
+          localStorage.setItem('userID', userid);
           console.log("Login successful");
           console.log(response.data);
 

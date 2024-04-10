@@ -21,17 +21,17 @@ const routes = [
     ]
   },
   {
-    path: '/dormitories',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/dormitories.vue') }
-    ]
-  },
-  {
     path: '/about',
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/about.vue') }
+    ]
+  },
+  {
+    path: '/adddorm',
+    component: () => import('layouts/MainLayout.vue'), // Assuming MainLayout is suitable for AddDorm page
+    children: [
+      { path: '', component: () => import('pages/AddDorm.vue') }
     ]
   },
   {
